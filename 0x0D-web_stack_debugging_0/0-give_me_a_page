@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
 # restarts apache2 webserver
-service apache2 restart && echo "Apache2 webserver restarted successfully"
-
+service apache2 restart && echo "Apache2 webserver
