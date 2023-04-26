@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Define variables
+key_name="school"
+key_bits="4096"
+key_phrase="betty"
+
+# Generate SSH key with a passphrase
+ssh-keygen -t rsa -f "$key_name" -b "$key_bits" -N "$key_phrase"
+
+# Print public key to console
+echo "Public key:"
+cat "${key_name}.pub"
