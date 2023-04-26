@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-# restarts apache2 webserver
-systemctl restart apache2
+# Fixes server bug to display a page
+
+# Add ServerName directive to Apache configuration file
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+# Start Apache web server
+systemctl start apache2
 
