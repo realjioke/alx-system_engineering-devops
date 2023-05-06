@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Generate SSH key pair for school
+ssh-keygen -t rsa -f school -b 4096 -N "betty"
+
+# Print success message
+echo "SSH key pair created successfully!"
+
