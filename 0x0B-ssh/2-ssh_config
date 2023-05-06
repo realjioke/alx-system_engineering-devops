@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+# This script updates the system-wide SSH client configuration file
+
+# Uncomment the required settings in the SSH client configuration file
+
+sudo sed -i 's/#   ForwardAgent no/ForwardAgent no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   ForwardX11 no/ForwardX11 no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   ForwardX11Trusted yes/ForwardX11Trusted yes/' /etc/ssh/ssh_config
+sudo sed -i 's/#   PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/ssh_config
+sudo sed -i 's/#   HostbasedAuthentication no/HostbasedAuthentication no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   GSSAPIAuthentication no/GSSAPIAuthentication no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   GSSAPIDelegateCredentials no/GSSAPIDelegateCredentials no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   GSSAPIKeyExchange no/GSSAPIKeyExchange no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   GSSAPITrustDNS no/GSSAPITrustDNS no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   BatchMode no/BatchMode no/' /etc/ssh/ssh_config
+sudo sed -i 's/#   CheckHostIP yes/CheckHostIP yes/' /etc/ssh/ssh_config
+sudo sed -i 's/#   AddressFamily any/AddressFamily any/' /etc/ssh/ssh_config
+sudo sed -i 's/#   ConnectTimeout 0/ConnectTimeout 0/' /etc/ssh/ssh_config
+sudo sed -i 's/#   StrictHostKeyChecking ask/StrictHostKeyChecking ask/' /etc/ssh/ssh_config
+sudo sed -i 's/#   IdentityFile ~/.ssh/id_rsa/IdentityFile ~/.ssh/id_rsa/' /etc/ssh/ssh_config
+sudo sed -i 's/#   IdentityFile ~/.ssh/id_dsa/IdentityFile ~/.ssh/id_dsa/' /etc/ssh/ssh_config
+sudo sed -i 's/#   IdentityFile ~/.ssh/id_ecdsa/IdentityFile ~/.ssh/id_ecdsa/' /etc/ssh/ssh_config
+sudo sed -i 's/#   IdentityFile ~/.ssh/id_ed25519/IdentityFile ~/.ssh/id_ed25519/' /etc/ssh/ssh_config
+sudo sed -i 's/#   Port 22/Port 22/' /etc/ssh/ssh_config
+sudo sed -i 's/#   Protocol 2/Protocol 2/' /etc/ssh/ssh_config
+sudo sed -i 's/#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc/Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc/' /etc/ssh/ssh_config
+sudo sed -i 's/#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com/MACs hmac-md5,hmac-sha1,umac-64@openssh.com/' /etc/ssh/ssh_config
+sudo sed -i 's/#   EscapeChar ~/EscapeChar ~/' /etc/ssh/ssh_config
+sudo sed -i 's/#   Tunnel no/Tunnel no/'
+
