@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Installs Nginx, listens on port 80, modifies the default web file
 
 # Update package lists
