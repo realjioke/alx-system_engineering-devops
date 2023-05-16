@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
-
-# Bash script to install and configure Nginx on web-01 server
+# Installs Nginx, listens on port 80, modifies the default web file
 
 # Update package lists
-apt-get update
+sudo apt-get update
 
 # Install Nginx
-apt-get install -y nginx
+sudo apt-get install -y nginx
 
-# Configure Nginx to listen on port 80
-sed -i 's/listen 80 default_server/listen 80/g' /etc/nginx/sites-available/default
+# Create a custom HTML file
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
-# Restart Nginx
-service nginx restart
-
-# Create a custom index.html file
-echo "Hello World!" > /var/www/html/index.html
+# Restart Nginx service
+sudo service nginx restart
 
