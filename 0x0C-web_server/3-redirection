@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Update the package repository and install Nginx
+apt-get update
+apt-get install -y nginx
+
+# Modify the default web file
+echo "Hello World!" | tee /var/www/html/index.nginx-debian.html
+
+# Configure the redirection for /redirect_me
+sed -i '/server_name _;/a \\n\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/github.com\/realjioke;\n\t}' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
+service nginx restart
+
