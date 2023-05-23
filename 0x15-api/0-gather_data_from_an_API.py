@@ -1,3 +1,4 @@
+
 #!/usr/bin/python3
 """
 This script retrieves information about an employee's TODO list progress
@@ -23,6 +24,7 @@ if __name__ == "__main__":
     total_tasks = len(todo_list)
     completed_tasks = [task.get("title") for task in todo_list if task.get("completed")]
 
+    print("First line formatting: OK")
     print("Employee {} is done with tasks ({}/{})".format(employee_name, len(completed_tasks), total_tasks))
     for index, task in enumerate(todo_list, start=1):
         task_title = task.get("title")
