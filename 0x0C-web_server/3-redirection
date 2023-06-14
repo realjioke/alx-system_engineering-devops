@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Edit the Nginx configuration file to add the redirection
-sed -i '/location \/ {/a \    location \/redirect_me {\n        return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
+sed -i '/location \/ {/a \    location \/redirect_me {\n        return 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-enabled/default
 
 # Restart the Nginx service
 service nginx restart
