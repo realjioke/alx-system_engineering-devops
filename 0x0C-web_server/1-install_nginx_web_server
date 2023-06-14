@@ -1,15 +1,17 @@
-#!/usr/bin/env bash
-# Installs Nginx, listens on port 80, modifies the default web file
+#!/bin/bash
 
 # Update package lists
-sudo apt-get update
+apt-get update
 
 # Install Nginx
-sudo apt-get install -y nginx
+apt-get install -y nginx
 
-# Create a custom HTML file
-echo "Hello World!" > /var/www/html/index.nginx-debian.html
+# Configure Nginx to listen on port 80
+sed -i 's/^\(\s*listen\s*\)80;/\180;/' /etc/nginx/sites-available/default
 
-# Restart Nginx service
-sudo service nginx restart
+# Restart Nginx
+service nginx restart
+
+# Create the Hello World index.html file
+echo "Hello World!" > /var/www/html/index.html
 
