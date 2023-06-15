@@ -1,17 +1,17 @@
 #!/bin/bash
 
-# Update package lists
-apt-get update
+# Update the package list
+sudo apt-get update
 
-# Install Nginx
-apt-get install -y nginx
+# Install nginx
+sudo apt-get install -y nginx
 
-# Configure Nginx to listen on port 80
-sed -i 's/^\(\s*listen\s*\)80;/\180;/' /etc/nginx/sites-available/default
+# Configure nginx to listen on port 80
+sudo sed -i 's/^\(listen\s\+\).*$/\180;/g' /etc/nginx/sites-available/default
 
-# Restart Nginx
-service nginx restart
+# Restart nginx (without using systemctl)
+sudo service nginx restart
 
-# Create the Hello World index.html file
-echo "Hello World!" > /var/www/html/index.html
-
+# Create an HTML file with the "Hello World!" content
+echo "Hello World!" | sudo tee /var/www/html/index.html > /dev/null
+	
