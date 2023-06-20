@@ -13,5 +13,5 @@ if ! ssh-add -l | grep -q "school"; then
 fi
 
 # SSH connection using the private key
-ssh -o "StrictHostKeyChecking=yes" -i ~/.ssh/school ubuntu@100.26.165.231
+ssh -o "StrictHostKeyChecking=yes" -i ~/.ssh/school ubuntu@54.144.158.105
 
