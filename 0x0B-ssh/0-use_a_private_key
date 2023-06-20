@@ -1,4 +1,17 @@
-#!/usr/bin/env bash
-# Connects to School remote server
+#!/bin/bash
 
-ssh -i ~/.ssh/school ubuntu@100.26.165.231
+# Verify the existence and permissions of the private key file
+if [ ! -f ~/.ssh/school ]; then
+    echo "Private key file not found: ~/.ssh/school"
+    exit 1
+fi
+
+# Check if the key is added to the SSH agent
+if ! ssh-add -l | grep -q "school"; then
+    echo "Adding private key to SSH agent"
+    ssh-add ~/.ssh/school
+fi
+
+# SSH connection using the private key
+ssh -o "StrictHostKeyChecking=yes" -i ~/.ssh/school ubuntu@100.26.165.231
+
