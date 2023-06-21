@@ -1,20 +1,16 @@
 #!/usr/bin/env bash
+# Script to install and configure Nginx web server
 
-# Update package lists
-apt-get update
+# Update the system
+sudo apt update
 
 # Install Nginx
-apt-get install -y nginx
+sudo apt install -y nginx
 
 # Configure Nginx to listen on port 80
-sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+sudo sed -i 's/listen 80 default_server;/listen 80;/' /etc/nginx/sites-available/default
 
 # Restart Nginx
-service nginx restart
+sudo service nginx restart
 
-# Check if Nginx is running
-service nginx status
-
-# Create a sample index.html file
-echo "Hello World!" | tee /var/www/html/index.html
 
