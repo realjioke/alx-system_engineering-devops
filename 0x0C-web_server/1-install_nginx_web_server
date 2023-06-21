@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
-# Installs ngnix, listens on port 80,amends the default web file
-apt-get -y update
-apt-get -y install nginx
-echo "Hello World!" | tee /var/www/html/index.nginx-debian.html
+
+# Update package lists
+apt-get update
+
+# Install Nginx
+apt-get install -y nginx
+
+# Configure Nginx to listen on port 80
+sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx
 service nginx restart
+
+# Check if Nginx is running
+service nginx status
+
+# Create a sample index.html file
+echo "Hello World!" | tee /var/www/html/index.html
+
