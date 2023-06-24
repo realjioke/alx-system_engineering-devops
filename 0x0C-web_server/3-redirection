@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# Update the system
+sudo apt update
+
+# Install Nginx
+sudo apt install -y nginx
+
+# Configure Nginx redirection
+sudo sed -i '37i\        location /redirect_me {\n            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n        }' /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx restart
+
