@@ -1,28 +1,9 @@
-package { 'nginx':
-  ensure => 'installed',
-}
-
-file { '/etc/nginx/sites-available/default':
-  ensure  => 'file',
-  content => '
-    server {
-      listen 80;
-      server_name _;
-      location / {
-        return 301 http://34.198.248.145/;
-      }
-    }
-  ',
-}
-
-file { '/etc/nginx/sites-enabled/default':
-  ensure => 'link',
-  target => '/etc/nginx/sites-available/default',
-}
-
-service { 'nginx':
-  ensure    => 'running',
-  enable    => true,
-  subscribe => File['/etc/nginx/sites-available/default'],
+exec {'install':
+  provider => shell,
+  command  => 'sudo apt-get -y update; sudo apt-get -y install nginx;
+  echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html;
+  sudo sed -i "s/server_name _;/server_name _;\n\t
+  rewrite ^\/redirect_me https:\/\/github.com\/realjioke permanent;/" /etc/nginx/sites-available/default;
+  sudo service nginx start',
 }
 
