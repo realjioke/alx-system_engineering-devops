@@ -1,42 +1,28 @@
-# Install Nginx package
 package { 'nginx':
   ensure => 'installed',
 }
 
-# Configure Nginx site
 file { '/etc/nginx/sites-available/default':
   ensure  => 'file',
-  content => "
+  content => '
     server {
-      listen 80 default_server;
-      listen [::]:80 default_server;
-
-      root /var/www/html;
-      index index.html index.htm;
-
+      listen 80;
+      server_name _;
       location / {
-        return 301 https://www.example.com$request_uri;
-      }
-      
-      error_page 404 /404.html;
-      location = /404.html {
-        root /var/www/html;
+        return 301 http://34.198.248.145/;
       }
     }
-  ",
+  ',
 }
 
-# Enable Nginx site
 file { '/etc/nginx/sites-enabled/default':
   ensure => 'link',
   target => '/etc/nginx/sites-available/default',
-  require => File['/etc/nginx/sites-available/default'],
 }
 
-# Restart Nginx service
 service { 'nginx':
   ensure    => 'running',
   enable    => true,
-  subscribe => File['/etc/nginx/sites-enabled/default'],
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
 
