@@ -1,25 +1,34 @@
-# Install nginx with puppet
-exec { 'install_nginx':
-  command  => 'apt-get -y update && apt-get -y install nginx',
-  path     => ['/usr/bin', '/usr/sbin', '/bin', '/sbin'],
-  provider => shell,
+# _install_nginx_web_server.pp
+
+# Install Nginx package
+package { 'nginx':
+  ensure => installed,
 }
 
-exec { 'create_index_file':
-  command  => 'echo "Hello World!" | tee /var/www/html/index.nginx-debian.html',
-  path     => ['/usr/bin', '/usr/sbin', '/bin', '/sbin'],
-  provider => shell,
+# Configure Nginx
+file { '/etc/nginx/sites-available/default':
+  ensure  => present,
+  content => '
+    server {
+      listen 80;
+      server_name _;
+      
+      location / {
+        return 200 "Hello World!";
+      }
+      
+      location /redirect_me {
+        return 301 http://example.com/;
+      }
+    }
+  ',
+  notify  => Service['nginx'],
 }
 
-exec { 'configure_redirect':
-  command  => 'sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/jesulayomy permanent;/" /etc/nginx/sites-available/default',
-  path     => ['/usr/bin', '/usr/sbin', '/bin', '/sbin'],
-  provider => shell,
-}
-
-exec { 'start_nginx':
-  command  => 'service nginx start',
-  path     => ['/usr/bin', '/usr/sbin', '/bin', '/sbin'],
-  provider => shell,
+# Enable and start Nginx service
+service { 'nginx':
+  ensure    => running,
+  enable    => true,
+  subscribe => File['/etc/nginx/sites-available/default'],
 }
 
