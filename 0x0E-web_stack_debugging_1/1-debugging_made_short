@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#  ust task 0 with less steps but i already have less steps
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
+kill -9 "$(cat /run/nginx.pid)"
