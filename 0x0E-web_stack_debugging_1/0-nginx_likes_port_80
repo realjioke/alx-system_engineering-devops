@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# server resets to work port 80 on nginx by replacing sites-enabled/default
+cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx restart
