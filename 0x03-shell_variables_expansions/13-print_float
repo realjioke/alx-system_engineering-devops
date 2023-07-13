@@ -1,2 +1,3 @@
 #!/bin/bash
-printf '℅.2f/n' $NUM
+printf '%.2f\n' $NUM 
+
