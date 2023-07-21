@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-# Restart Apache and configure it to serve a "Hello Holberton" page
-
-# Install Apache web server if it is not already installed
-if ! command -v apache2 &> /dev/null; then
-    sudo apt-get update
-    sudo apt-get install apache2 -y
-fi
-
-# Create a new HTML file with "Hello Holberton" content
-echo "<h1>Hello Holberton</h1>" | sudo tee /var/www/html/index.html > /dev/null
-
-# Restart Apache to load the new configuration
-sudo systemctl restart apache2
+# Run Apache on the 265-0 Docker container.
+echo "ServerName localhost" >> /etc/apache2.conf
+service apache2 start
