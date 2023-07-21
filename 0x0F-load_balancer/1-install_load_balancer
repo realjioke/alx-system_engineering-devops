@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC2154
+# installs haproxy on a new load balancer and setups the config
+
+sudo apt-get -y install software-properties-common
+sudo add-apt-repository -y ppa:vbernat/haproxy-1.8
+sudo apt-get -y update
+sudo apt-get -y install haproxy=1.8.\*
+sudo service haproxy start
+echo "frontend haproxynode
+        bind *:80
+	mode http
+	default_backend backendnodes
+backend backendnodes
+ 	balance roundrobin
+	server 161704-web-01 35.174.208.188:80 check
+	server 161704-web-02 54.236.16.246:80 check" | sudo tee -a /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
